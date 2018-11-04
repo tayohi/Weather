@@ -27,13 +27,13 @@ export class HttpService {
 
   geCurrentWeather(lat, lon): Observable<any> {
     return this.http.get(
-      'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + this.apiKey).pipe(map(data => data));
+      'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + this.apiKey).pipe(map(data => data));
   }
 
 
   getWeather(location): Observable<any> {
     return this.http.get(
-      'http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + this.apiKey).pipe(map(data => data));
+      'https://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + this.apiKey).pipe(map(data => data));
   }
 
   getHistoryWeather(): Observable<WeatherModule[]> {
