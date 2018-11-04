@@ -1,0 +1,39 @@
+<div class="container h-100 mt-5">
+  <h1 class=" xl-12 text-center zoomIn mb-3 mt-2" [ngClass]="{'animated': weatherService.checkIfEmpty()}">Historia
+    Pogody:</h1>
+  <h5 class=" mt-5 xl-12 text-center mb-3 mt-2" [@dataMove] *ngIf="historyWeather.length < 1">Brak
+    histori pogody!</h5>
+
+
+
+  <div class="row w-100" *ngFor="let x of historyWeather" [@dataMove]>
+    <div class="col-sm-12 text-center mb-3 animated zoomIn">
+      <h4>Pogoda dla {{x.city | titlecase}}:<br></h4>
+      <h6>szerokość geograficzna: {{x.coordLong}} oraz długość geograficzna: {{ x.coordLat}}</h6>
+      <h6>Data: {{x.date | date:'dd/MM/yy, HH:mm:ss'}}</h6>
+    </div>
+    <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3" [ngStyle]="{'height': '200px'}">
+      <div class="flex-center flex-column py-3">
+        <h4 class="mb-3">Temperatura: {{ x.temp | number : '1.2-2'}}&#176;C </h4>
+        <mdb-icon *ngIf="x.temp > 0" icon="sun-o" size="5x"></mdb-icon>
+        <mdb-icon *ngIf="x.temp <= 0" icon="snowflake-o" size="5x"></mdb-icon>
+      </div>
+    </div>
+    <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3" [ngStyle]="{'height': '200px'}">
+      <div class="flex-center flex-column py-3">
+        <h4 class="mb-3">Wiatr: {{ x.wind }}m/s</h4>
+        <mdb-icon icon="paper-plane-o" size="5x"></mdb-icon>
+      </div>
+    </div>
+    <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3" [ngStyle]="{'height': '200px'}">
+      <div class="flex-center flex-column py-3">
+        <h4 class="mb-3"> Wilgotność: {{x.humidity}}%</h4>
+        <mdb-icon icon=" fa fa-tint" size="5x"></mdb-icon>
+      </div>
+    </div>
+    <div class="col-sm-12 text-center">
+      <button class="animated rotateIn mt-3 mb-5 mx-5" mdbBtn type="button" color="warning" outline="true" (click)="deletefromHistoryWeather(x)"
+        mdbWavesEffect>USUŃ Z HISTORII</button>
+    </div>
+  </div>
+</div>

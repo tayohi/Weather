@@ -1,0 +1,21 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light">
+
+  <!-- Collapsible content -->
+  <links>
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/" class="nav-link waves-light" mdbWavesEffect>Lokalna Pogoda</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/history" class="nav-link waves-light" mdbWavesEffect>Historia Pogody</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/panel" *ngIf="!authService.user" class="nav-link waves-light" mdbWavesEffect>Zaloguj</a>
+      </li>
+      <li class="nav-item ml-5 pull-right">
+        <div *ngIf="authService.user" class="nav-link waves-light">Zalogowany jako:<span class="text-warning"> {{authService.user.email}}</span><a class=""  (click)="logout()"  mdbWavesEffect> Wyloguj</a></div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>

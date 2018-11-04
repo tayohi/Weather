@@ -1,0 +1,64 @@
+<button class=" animated rotateIn align-middle text-center px-0" mdbBtn type="button" rounded="true" color="warning"
+  outline="true" style="
+  width: 70px;
+  top: 350px;
+  height: 200px;
+  position: fixed;
+  right: -10px;
+  border-radius: 4px 0 0 4px;
+  z-index: 100;"
+  (click)="basicModal.show()" mdbWavesEffect>LOKALNA<br>POGODA<br>
+  <mdb-icon icon="sun-o" size="2x" class="mt-2"></mdb-icon>
+</button>
+
+
+<div mdbModal #basicModal="mdbModal" class="modal fade right h-100" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title mx-auto" id="myModalLabel">LOKALNA POGODA</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row" *ngFor="let x of currentWeather" [@dataMove]>
+          <div class="col-sm-12 text-center mb-3 animated zoomIn">
+            <h4>Pogoda dla {{x.city | titlecase}}:<br></h4>
+            <h6>szerokość geograficzna: {{x.coordLong}} oraz długość geograficzna: {{ x.coordLat}}</h6>
+            <h6>Data: {{x.date | date:'dd/MM/yy, HH:mm:ss'}}</h6>
+          </div>
+          <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3"
+            [ngStyle]="{'height': '130px'}">
+            <div class="flex-center flex-column py-3">
+              <h4 class="mb-3">Temperatura: {{ x.temp | number : '1.2-2'}}&#176;C </h4>
+              <mdb-icon *ngIf="x.temp > 0" icon="sun-o" size="2x"></mdb-icon>
+              <mdb-icon *ngIf="x.temp <= 0" icon="snowflake-o" size="2x"></mdb-icon>
+            </div>
+          </div>
+          <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3"
+            [ngStyle]="{'height': '130px'}">
+            <div class="flex-center flex-column py-3">
+              <h4 class="mb-3">Wiatr: {{ x.wind }}m/s</h4>
+              <mdb-icon icon="paper-plane-o" size="2x"></mdb-icon>
+            </div>
+          </div>
+          <div class="col-sm text-center mx-5 my-2 animated zoomIn align-middle border-0 border-dark z-depth-3"
+            [ngStyle]="{'height': '130px'}">
+            <div class="flex-center flex-column py-3">
+              <h4 class="mb-3"> Wilgotność: {{x.humidity}}%</h4>
+              <mdb-icon icon=" fa fa-tint" size="2x"></mdb-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer mx-auto">
+        <button type="button" mdbBtn rounded="true" color="black" outline="true" class="waves-light" aria-label="Close"
+          (click)="basicModal.hide()" mdbWavesEffect>Zamknij</button>
+        <button class="waves-light" mdbBtn type="button" rounded="true" color="black" outline="true" (click)="basicModal.hide()"
+          (click)="sendtoHistoryWeather()" #xxx mdbWavesEffect>Dodaj do historii</button>
+      </div>
+    </div>
+  </div>
+</div>
