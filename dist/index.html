@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>WeatherApp</title>
-  <base href="/dist/index.html">
+  <base href="/dist">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -12,17 +12,3 @@
   <app-root></app-root>
 <script type="text/javascript" src="runtime.ec2944dd8b20ec099bf3.js"></script><script type="text/javascript" src="polyfills.f6930679dbd092886231.js"></script><script type="text/javascript" src="scripts.36c624724711738aeb68.js"></script><script type="text/javascript" src="main.23efa931b5db1e5b8adf.js"></script></body>
 </html>
-
-<script>
-  (function () {
-    // Retrieve the URL the user was trying to access when receiving the 404.
-    var redirect = sessionStorage.redirect;
-    // Remove the URL from sessionStorage.
-    delete sessionStorage.redirect;
-    // Check if we actually need to redirect.
-    if (redirect && redirect != location.href) {
-      // We need to redirect to the URL the user was trying to access.
-      history.replaceState(null, null, redirect);
-    }
-  })();
-</script>
