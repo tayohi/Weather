@@ -27,6 +27,7 @@ export class HistoryWeatherComponent implements OnInit {
     this.weatherService.historyWeatherSubject.subscribe(
       (data: WeatherModule[]) => {
         this.historyWeather = data;
+        this.sortData();
       });
 
   }
